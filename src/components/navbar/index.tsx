@@ -20,7 +20,6 @@ const Navbar = (props: INavbar) => {
   React.useEffect(() => {
     props.handleNewsType(selectedNewsType);
   }, [selectedNewsType]);
-  console.log("bookmarked", bookmarked);
 
   return (
     <nav className="navbar">

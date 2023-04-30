@@ -2,7 +2,7 @@ import { useEffect, useReducer, useRef } from "react";
 
 interface State<T> {
   data?: T;
-  error?: Error;
+  error?: Error | any;
 }
 
 type Cache<T> = { [url: string]: T };
@@ -10,7 +10,7 @@ type Cache<T> = { [url: string]: T };
 type Action<T> =
   | { type: "loading" }
   | { type: "fetched"; payload: T }
-  | { type: "error"; payload: Error };
+  | { type: "error"; payload: Error | any };
 
 function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
   const cache = useRef<Cache<T>>({});
@@ -38,7 +38,6 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
   };
 
   const [state, dispatch] = useReducer(fetchReducer, initialState);
-
   useEffect(() => {
     if (!url) return;
 
@@ -54,18 +53,21 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
 
       try {
         const response = await fetch(url, options);
+        
         if (!response.ok) {
-          throw new Error(response.statusText);
+          const data = (await response.json()) as Error;
+          if (cancelRequest.current) return;
+          throw new Error(data?.message ?? "Something went wrong");
         }
-
         const data = (await response.json()) as T;
         cache.current[url] = data;
         if (cancelRequest.current) return;
 
         dispatch({ type: "fetched", payload: data });
       } catch (error) {
+        const data = (await error ?? error) as T;
+        cache.current[url] = data;
         if (cancelRequest.current) return;
-
         dispatch({ type: "error", payload: error as Error });
       }
     };
@@ -76,7 +78,6 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
       cancelRequest.current = true;
     };
   }, [url]);
-
   return state;
 }
 

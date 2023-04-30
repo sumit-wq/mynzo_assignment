@@ -20,13 +20,14 @@ function NewsPage() {
   };
 
   const renderListData = () => {
+    if (error){
+    return (
+      <div className="error-msg">
+        {error?.message ?? `There is an error.`}
+      </div>
+    );
+    }
     if (!data) return <Loader />;
-    if (error)
-      return (
-        <div className="error-msg">
-          {error?.message ?? `There is an error.`}
-        </div>
-      );
      else return <NewsCardList news={data.articles} />;
   };
 
