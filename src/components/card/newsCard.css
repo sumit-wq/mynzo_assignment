@@ -1,0 +1,88 @@
+.news-card {
+  box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 1.6rem auto;
+}
+
+.news-card-star-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.news-card-star-icon i {
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 0.8rem;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.1);
+}
+
+.star-popup {
+  position: absolute;
+  background-color: rgba(242, 201, 76, 0.8);
+  border-radius: 0.8rem;
+  padding: 0.6rem;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.popup-text {
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+
+.news-card-image {
+  height: 20rem;
+  background-size: cover;
+  background-position: inherit;
+  display: flex;
+  justify-content: end;
+}
+.news-card-details {
+  padding: 1.6rem;
+}
+
+.news-card-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.news-card-date {
+  font-size: 1.4rem;
+  color: #808080;
+  margin-bottom: 0.8rem;
+}
+
+.news-card-description {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+
+.news-card-source {
+  font-size: 1.4rem;
+  color: #808080;
+  text-align: right;
+}
+
+.bookmark-icon {
+  padding: 1.6rem;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2.4rem;
+  color: #000;
+  transition: all 0.5s ease-out;
+}
+
+.bookmark-icon--clicked {
+  transform: scale(1.3);
+}

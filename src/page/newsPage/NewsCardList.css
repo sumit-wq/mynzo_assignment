@@ -1,0 +1,9 @@
+.news-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.6rem;
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 1.6rem;
+}

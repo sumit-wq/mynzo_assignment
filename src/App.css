@@ -1,0 +1,22 @@
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  background-color: #f9d29d;
+  background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+}
+
+@media (max-width: 998px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+.title-header {
+  font-size: 2.4rem;
+}
