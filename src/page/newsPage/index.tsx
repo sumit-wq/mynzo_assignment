@@ -5,6 +5,7 @@ import { Get } from "../../interfaces";
 import Loader from "../../components/loader";
 import Navbar from "../../components/navbar";
 import { fetchNews } from "../../service/fetchNews";
+import "./NewsCardList.css";
 
 function NewsPage() {
   const [query, setQuery] = React.useState<string>("");
@@ -20,8 +21,13 @@ function NewsPage() {
 
   const renderListData = () => {
     if (!data) return <Loader />;
-    else if (error) return <p>There is an error.</p>;
-    else return <NewsCardList news={data.articles} />;
+    if (error)
+      return (
+        <div className="error-msg">
+          {error?.message ?? `There is an error.`}
+        </div>
+      );
+     else return <NewsCardList news={data.articles} />;
   };
 
   return (
